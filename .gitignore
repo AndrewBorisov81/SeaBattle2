@@ -1,0 +1,5 @@
+# Igonre vscode files
+.vscode/
+
+# Ignore shadow build directory
+build/
