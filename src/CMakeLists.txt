@@ -1,12 +1,23 @@
-# Add all source files to a variable
 set(SOURCES
-    summer.cpp
+    Cell.cpp
+    Controller.cpp
+    ControllerObserver.cpp
+    GameBoard.cpp
+    InputConsoleController.cpp
+    LoggerObserver.cpp
+    Model.cpp
+    ModelSubject.cpp
+    Observer.cpp
+    Parser.cpp
+    Ship.cpp
+    ShipsLogger.cpp
+    Subject.cpp
+    View.cpp
+    ViewObserver.cpp
 )
 
-# Add a library target called "summer" that compiles the source files
-add_library(summer ${SOURCES})
+add_library(summer summer.cpp)
 
-# Add the unit test executable target
-add_executable(main main.cpp)
+add_executable(SeaBattle main.cpp ${SOURCES})
 
-target_link_libraries(main PRIVATE summer)
+target_link_libraries(SeaBattle PRIVATE summer)

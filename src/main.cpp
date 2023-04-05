@@ -40,7 +40,7 @@ int main()
 {
    cout << "Hello Sea Battle!" << '\n';
 
-   /*std::string gameLevel {"1; 12, 12, 25, 25; 4, 0, 0, 0; 3, 1, 2, 1;  2, 7, 1, 0; 1, 11, 11, 0"};
+   std::string gameLevel {"1; 12, 12, 25, 25; 4, 0, 0, 0; 3, 1, 2, 1;  2, 7, 1, 0; 1, 11, 11, 0"};
 
    Parser parser;
    std::tuple<int, FieldData, std::vector<ShipData>> levelParsedData = parser.parse(gameLevel);
@@ -61,7 +61,7 @@ int main()
         std::make_unique<ViewObserver>(subject, view);
 
     std::unique_ptr<Controller> controller = 
-        std::make_unique<Controller>(std::move(model), view);*/
+        std::make_unique<Controller>(std::move(model), view);
 
     int result = sum(5, 10);
 
