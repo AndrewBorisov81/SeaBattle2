@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.10)
 
 project(test_parser_project)
 
+include_directories(${CMAKE_SOURCE_DIR}/src)
+
 # Add all source files to a variable
 set(SOURCES
     ${CMAKE_SOURCE_DIR}/src/Parser.cpp

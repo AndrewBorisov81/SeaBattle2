@@ -1,25 +1,21 @@
 #include "Parser.h"
 
-#include <gtest/gtest.h>
-
 #include <string>
 #include <queue>
 
+#include <gtest/gtest.h>
+
+
 TEST(ParserTest, parseAlgorithm) {
-    // Test case 1: positive numbers
-    const std::string s1{5;a};
-    const std::queue<std::string> expected{"5", "a"};
+    const std::string parseStr{"5;a"};
+    std::queue<std::string> expected;
+    expected.push("5");
+    expected.push("a");
 
+    Parser parser;
     std::queue<std::string> test;
-    parseAlgorithm(s1, std::string(";"), test);
+    parser.parseAlgorithm(parseStr, std::string(";"), test);
 
+    EXPECT_EQ(test.size(), expected.size());
     EXPECT_EQ(test, expected);
-    //EXPECT_EQ(sum(10, 20), 30);
-    
-    // Test case 2: negative numbers
-    //EXPECT_EQ(sum(-5, -10), -15);
-    
-    // Test case 3: mixed positive and negative numbers
-    //EXPECT_EQ(sum(-5, 10), 5);
-    //EXPECT_EQ(sum(20, -10), 10);
 }

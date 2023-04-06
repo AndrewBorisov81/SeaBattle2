@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.10)
 
 project(my_project_unit_tests)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_BUILD_TYPE Debug)
+
 # Add all source files to a variable
 #set(SOURCES
 #    summer_test.cpp
