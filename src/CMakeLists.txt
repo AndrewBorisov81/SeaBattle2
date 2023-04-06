@@ -12,12 +12,9 @@ set(SOURCES
     Ship.cpp
     ShipsLogger.cpp
     Subject.cpp
+    summer.cpp
     View.cpp
     ViewObserver.cpp
 )
 
-add_library(summer summer.cpp)
-
 add_executable(SeaBattle main.cpp ${SOURCES})
-
-target_link_libraries(SeaBattle PRIVATE summer)
