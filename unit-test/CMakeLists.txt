@@ -16,3 +16,4 @@ project(my_project_unit_tests)
 #target_link_libraries(my_project_unit_tests ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES} pthread summer)
 
 add_subdirectory(TestSummer)
+add_subdirectory(TestParser)
