@@ -1,5 +1,6 @@
-#include <gtest/gtest.h>
 #include "summer.h"
+
+#include <gtest/gtest.h>
 
 TEST(SummerTest, SumTest) {
     // Test case 1: positive numbers
