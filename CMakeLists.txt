@@ -10,5 +10,7 @@ include_directories(${CMAKE_SOURCE_DIR}/src)
 # Add the "src" directory as a subdirectory
 add_subdirectory(src)
 
+enable_testing()
+
 # Add the "unit-test" directory as a subdirectory
 add_subdirectory(unit-test)
