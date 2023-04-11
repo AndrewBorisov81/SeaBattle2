@@ -1,30 +1,47 @@
-#include "LoggerObserver.h"
-#include "ILogger.h"
-
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include <memory>
+using ::testing::AtLeast; 
 
-class MockShipsLogger: public ILogger {
+class ITurtle {
 public:
+  virtual ~ITurtle() {}
+  virtual void PenDown() = 0;
 };
 
-class MockModelSubject: public ISubject {
+class Turtle: public ITurtle {
 public:
+    virtual ~Turtle(){}
+    virtual void PenDown() override {};
 };
 
-class TestLoggerObserver : public ::testing::Test {
+class Painter {
 public:
-    void SetUp() override 
-    {
-        //m_loggerObserver = std::make_unique<LoggerObserver>();
-    }
-    
-    void TearDown() override 
-    {
-
-    }
-protected:
-    std::unique_ptr<ILogger> m_loggerObserver;
+    Painter(){}
+    virtual ~Painter(){}
+    Painter(Turtle* turtle) : m_turtle{turtle}{}
+    bool DrawCircle() 
+    { 
+      m_turtle->PenDown();
+      return true; 
+    };
+private:
+    Turtle* m_turtle;
 };
+
+class MockTurtle : public Turtle {
+ public:
+      virtual ~MockTurtle(){}
+      MOCK_METHOD(void, PenDown, (), (override));
+};
+
+TEST(PainterTest, CanDrawSomething) {
+  MockTurtle turtle;                             
+  EXPECT_CALL(turtle, PenDown())              
+      .Times(AtLeast(1));
+
+  Painter painter(&turtle);                       
+
+  EXPECT_TRUE(painter.DrawCircle());      
+}
+
