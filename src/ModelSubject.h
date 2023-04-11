@@ -6,7 +6,7 @@ class Cell;
 class Ship;
 class IObserver;
 
-class ModelSubject : public Subject, private Model {
+class ModelSubject : public Subject {
 public:
     ModelSubject();
     virtual ~ModelSubject();
