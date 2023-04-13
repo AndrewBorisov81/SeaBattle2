@@ -41,29 +41,3 @@ TEST(MyTestSimple, Test3) {
   MyClass myClass(10);
   EXPECT_EQ(myClass.GetValue(), 10);
 }
-
-
-
-
-/*class MyEmptyClass: public ::testing::Test {
-  public:
-    void SetUp() override 
-    {  
-      bool stop1 = true; 
-    }
-    
-    void TearDown() override 
-    {
-      bool stop2 = true;
-    }
-  protected:
-
-};
-
-TEST(EmptyTest, createEmptyTest) {
-  bool stop3 = true;
-}
-
-TEST_F(MyEmptyClass, createEmptyTestFrame) {
-  bool stop4 = true;
-}*/
