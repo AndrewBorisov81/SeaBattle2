@@ -20,5 +20,5 @@ set(CMAKE_BUILD_TYPE Debug)
 
 add_subdirectory(TestSummer)
 add_subdirectory(TestParser)
-#add_subdirectory(TestLoggerObserver)
+add_subdirectory(TestEmpty)
 add_subdirectory(TestTurtle)
