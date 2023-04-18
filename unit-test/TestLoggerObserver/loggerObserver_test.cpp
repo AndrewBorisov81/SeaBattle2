@@ -12,6 +12,7 @@
 #include <memory>
 #include <vector>
 
+using ::testing::_;
 using ::testing::AtLeast;
 
 class ICell {
@@ -56,37 +57,23 @@ public:
         const std::vector<std::shared_ptr<Ship>>& ships, int rows, int columns), (override));
 };
 
-class TestLoggerObserver : public ::testing::Test {
-public:
-    void SetUp() override 
-    {   
-        //m_shipsLogger = std::make_unique<MockShipsLogger>();
-       // m_modelSubject = std::make_unique<MockModelSubject>();
-        //m_loggerObserver = std::make_unique<LoggerObserver>();
-    }
-    
-    void TearDown() override 
-    {
-
-    }
-protected:
-    //std::unique_ptr<LoggerObserver> m_loggerObserver;
-    //std::unique_ptr<MockShipsLogger> m_shipsLogger;
-    //std::unique_ptr<MockModelSubject> m_modelSubject; 
-};
-
 TEST(TestLoggerObserverSimple, createTestLoggerObserver) {
     std::vector<std::shared_ptr<Cell>> cells;
     cells.push_back(std::make_shared<MockCell>());
     std::vector<std::shared_ptr<Ship>> ships;
     ships.push_back(std::make_shared<MockShip>());
     std::unique_ptr<ILogger> shipsLogger = std::make_unique<MockShipsLogger>();
-    MockShipsLogger* mockShipsLogger = static_cast<MockShipsLogger*>(shipsLogger.get());
-    EXPECT_CALL(*mockShipsLogger, update(cells, ships))                  
+    MockShipsLogger* mockShipsLogger = static_cast<MockShipsLogger*>(shipsLogger.get());\
+    EXPECT_NE(mockShipsLogger, nullptr);
+    EXPECT_CALL(*mockShipsLogger, update(_, _))                  
       .Times(AtLeast(1));
     std::shared_ptr<ISubject> modelSubject = std::make_shared<MockModelSubject>();
     MockModelSubject* mockModelSubject = static_cast<MockModelSubject*>(modelSubject.get());
-    EXPECT_CALL(*mockModelSubject, notify(cells, ships, 10, 10))                  
-      .Times(AtLeast(1));
+    EXPECT_NE(mockModelSubject, nullptr);
+    EXPECT_CALL(*mockModelSubject, attach(_))
+       .Times(AtLeast(1));
+
     auto loggerObserver = std::make_unique<LoggerObserver>(modelSubject, std::move(shipsLogger));
+
+    loggerObserver->update(cells, ships, 10, 10);  
 }
