@@ -1,4 +1,7 @@
 set(SOURCES
+    ${CMAKE_SOURCE_DIR}/src/Cell.cpp
+    ${CMAKE_SOURCE_DIR}/src/Ship.cpp
+    ${CMAKE_SOURCE_DIR}/src/LoggerObserver.cpp
     loggerObserver_test.cpp
 )
 
