@@ -41,3 +41,8 @@ TEST(MyTestSimple, Test3) {
   MyClass myClass(10);
   EXPECT_EQ(myClass.GetValue(), 10);
 }
+
+TEST(SkipTest, DoesSkip) {
+  GTEST_SKIP() << "Skipping single test";
+  EXPECT_EQ(0, 1);  // Won't fail; it won't be executed
+}
