@@ -4,6 +4,7 @@
 #include <memory>
 #include <utility>
 #include <tuple>
+#include <fstream>
 
 #include "Parser.h"
 #include "GameBoard.h"
@@ -39,17 +40,25 @@ using json = nlohmann::json;
 1, 12, 12, 0      // ship4
 */
 
+
 int main()
 {
    cout << "Hello Sea Battle!" << '\n';
-   json jgamelevel = {
+   /*json jgamelevel = {
     {"level" , 1},
     {"field", {{"rows", 12}, {"columns", 12}, {"rowWidth", 25}, {"rowHight", 25}}},
     {"fourDecksShip", {{"decks, 4"}, {"beginRowCell", 1}, {"beginColumnCell, 1"}, {"isHorizontal, false"}}},
     {"threeDecksShip", {{"decks, 3"}, {"beginRowCell", 3}, {"beginColumnCell, 3"}, {"isHorizontal, true"}}},
     {"twoDecksShip", {{"decks, 2"}, {"beginRowCell", 7}, {"beginColumnCell, 1"}, {"isHorizontal, false"}}},
     {"oneDecksShip", {{"decks, 1"}, {"beginRowCell", 12}, {"beginColumnCell, 12"}, {"isHorizontal, false"}}},
-   };
+   };*/
+ 
+   std::ifstream f("/Users/andrewborisov/Desktop/Dev/Projects/Cpp/VSCode/SeaBattle/levelData.json");
+   if(!f.is_open()) {
+       bool stop = true;
+   }
+   json jgameLevel = json::parse(f);
+   std::string s = jgameLevel.dump();
 
    std::string gameLevel {"1; 12, 12, 25, 25; 4, 0, 0, 0; 3, 1, 2, 1;  2, 7, 1, 0; 1, 11, 11, 0"};
 
