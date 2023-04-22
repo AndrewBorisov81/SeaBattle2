@@ -6,7 +6,7 @@
 #include <tuple>
 #include <fstream>
 
-#include "Parser.h"
+#include "ParserTxt.h"
 #include "GameBoard.h"
 #include "Model.h"
 #include "View.h"
@@ -62,7 +62,7 @@ int main()
 
    std::string gameLevel {"1; 12, 12, 25, 25; 4, 0, 0, 0; 3, 1, 2, 1;  2, 7, 1, 0; 1, 11, 11, 0"};
 
-   Parser parser;
+   ParserTxt parser;
    std::tuple<int, FieldData, std::vector<ShipData>> levelParsedData = parser.parse(gameLevel);
    std::shared_ptr<ISubject> subject = std::make_unique<ModelSubject>();;
 

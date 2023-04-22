@@ -1,12 +1,12 @@
-#include "Parser.h"
+#include "ParserTxt.h"
 #include <queue>
 #include <vector>
 
-Parser::Parser() {
+ParserTxt::ParserTxt() {
 
 }
 
-std::tuple<int, FieldData, std::vector<ShipData>> Parser::parse(const std::string& str) {
+std::tuple<int, FieldData, std::vector<ShipData>> ParserTxt::parse(const std::string& str) {
     std::queue<std::string> tokens;
     std::string levelData = str;
     std::string delimeter = ";";
@@ -66,7 +66,7 @@ std::tuple<int, FieldData, std::vector<ShipData>> Parser::parse(const std::strin
     return std::tuple<int, FieldData, std::vector<ShipData>>{level, fieldData, shipsData};
 }
 
-void Parser::parseAlgorithm(const std::string& stringToParse, 
+void ParserTxt::parseAlgorithm(const std::string& stringToParse, 
                             const std::string& delimeter, std::queue<std::string>& returnParsedData) {
     std::queue<std::string> tokens;
     std::string stringData = stringToParse;

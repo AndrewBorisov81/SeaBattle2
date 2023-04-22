@@ -1,12 +1,9 @@
 #pragma once
 
-#include <string>
-#include <queue>
-#include "UtilityData.h"
-
-class Parser {
+#include "IParser.h"
+class ParserTxt : public IParser {
 public:
-    Parser();
+    ParserTxt();
     std::tuple<int, FieldData, std::vector<ShipData>> parse(const std::string& str);
     void parseAlgorithm(const std::string& stringToParse, 
                                const std::string& delimeter, std::queue<std::string>& returnParsedData);

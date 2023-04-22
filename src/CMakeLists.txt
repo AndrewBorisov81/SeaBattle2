@@ -8,7 +8,7 @@ set(SOURCES
     Model.cpp
     ModelSubject.cpp
     Observer.cpp
-    Parser.cpp
+    ParserTxt.cpp
     Ship.cpp
     ShipsLogger.cpp
     Subject.cpp

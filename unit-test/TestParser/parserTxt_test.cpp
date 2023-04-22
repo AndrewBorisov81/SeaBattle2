@@ -1,4 +1,4 @@
-#include "Parser.h"
+#include "ParserTxt.h"
 
 #include <string>
 #include <queue>
@@ -8,19 +8,19 @@
 
 #include <gtest/gtest.h>
 
-class ParserTest: public ::testing::Test {
+class ParserTxtTest: public ::testing::Test {
 protected:
     void SetUp() override {
-         m_parser = std::make_unique<Parser>();
+         m_parser = std::make_unique<ParserTxt>();
     }
 
     void TearDown() override {
         m_parser.reset();
     }
-    std::unique_ptr<Parser> m_parser;
+    std::unique_ptr<ParserTxt> m_parser;
 };
 
-TEST_F(ParserTest, parseAlgorithmSuccess) {
+TEST_F(ParserTxtTest, parseAlgorithmSuccess) {
     std::vector<std::string> parseStrings{"5;a", " ", "a;", ";", "6;cf;"};
     std::queue<std::string> expected1;
     expected1.push("5");
