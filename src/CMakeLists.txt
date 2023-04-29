@@ -18,8 +18,10 @@ set(SOURCES
     ViewObserver.cpp
 )
 
-find_package(nlohmann_json 3.2.0 REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_search_module(JSONCPP jsoncpp)
+find_package(jsoncpp REQUIRED)
 
 add_executable(SeaBattle main.cpp ${SOURCES})
 
-target_link_libraries(SeaBattle PRIVATE nlohmann_json::nlohmann_json)
+target_link_libraries(SeaBattle jsoncpp_lib)
