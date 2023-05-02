@@ -7,6 +7,7 @@
 #include <fstream>
 
 #include "ParserTxt.h"
+#include "ParserJson.h"
 #include "GameBoard.h"
 #include "Model.h"
 #include "View.h"
@@ -19,7 +20,8 @@
 #include "ViewObserver.h"
 #include "ModelSubject.h"
 
-#include <nlohmann/json.hpp>
+//#include <nlohmann/json.hpp>
+#include <json/json.h>
 
 // Test
 #include "InputConsoleController.h"
@@ -27,7 +29,7 @@
 #include "summer.h"
 
 using namespace std;
-using json = nlohmann::json;
+//#using json = nlohmann::json;
 
 // how to get and hold data to ship
 
@@ -54,17 +56,29 @@ int main()
    };*/
  
    std::ifstream f("/Users/andrewborisov/Desktop/Dev/Projects/Cpp/VSCode/SeaBattle/levelData.json");
-   if(!f.is_open()) {
-       bool stop = true;
+   if(f.is_open()) {
+        Json::Value root;
+        f >> root;
+
+        Json::Value gamelevelObj = root["gamelevel"];
+        Json::Value fourDecksShipObj = gamelevelObj["fourDecksShip"];
+        int decks = fourDecksShipObj["decks"].asInt();
+        int beginRowCell = fourDecksShipObj["beginRowCell"].asInt();
+        int beginColumnCell = fourDecksShipObj["beginColumnCell"].asInt();
+        bool isHorizontal = fourDecksShipObj["isHorizontal"].asBool();
+        bool stop = true;
+        /*json jgameLevel = json::parse(f);
+        std::string gameLevelj = jgameLevel.dump();
+
+        ParserJson parserJson;
+        std::tuple<int, FieldData, std::vector<ShipData>> levelParsedDataJ = parserJson.parse(gameLevelj);*/
+        Json::Value v;
    }
-   json jgameLevel = json::parse(f);
-   std::string s = jgameLevel.dump();
 
    std::string gameLevel {"1; 12, 12, 25, 25; 4, 0, 0, 0; 3, 1, 2, 1;  2, 7, 1, 0; 1, 11, 11, 0"};
-
    ParserTxt parser;
    std::tuple<int, FieldData, std::vector<ShipData>> levelParsedData = parser.parse(gameLevel);
-   std::shared_ptr<ISubject> subject = std::make_unique<ModelSubject>();;
+   std::shared_ptr<ISubject> subject = std::make_unique<ModelSubject>();
 
    enum class InitData{field = 1, ships};
     std::unique_ptr<Model> model = std::make_unique<Model>();
