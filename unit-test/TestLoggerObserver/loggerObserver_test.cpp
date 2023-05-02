@@ -63,7 +63,7 @@ TEST(TestLoggerObserverSimple, createTestLoggerObserver) {
     std::vector<std::shared_ptr<Ship>> ships;
     ships.push_back(std::make_shared<MockShip>());
     std::unique_ptr<ILogger> shipsLogger = std::make_unique<MockShipsLogger>();
-    MockShipsLogger* mockShipsLogger = static_cast<MockShipsLogger*>(shipsLogger.get());\
+    MockShipsLogger* mockShipsLogger = static_cast<MockShipsLogger*>(shipsLogger.get());
     EXPECT_NE(mockShipsLogger, nullptr);
     EXPECT_CALL(*mockShipsLogger, update(_, _))                  
       .Times(AtLeast(1));
