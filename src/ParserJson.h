@@ -1,3 +1,4 @@
+#pragma once
 #include "IParser.h"
 
 class ParserJson : public IParser {
