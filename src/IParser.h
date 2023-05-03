@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <queue>
+#include <tuple>
 #include "UtilityData.h"
 
 class IParser {
