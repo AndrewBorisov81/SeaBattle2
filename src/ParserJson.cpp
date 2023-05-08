@@ -7,6 +7,7 @@
     {"oneDecksShip", {{"decks, 1"}, {"beginRowCell", 12}, {"beginColumnCell, 12"}, {"isHorizontal, false"}}},
 };*/
 
+//std::ifstream f("/Users/andrewborisov/Desktop/Dev/Projects/Cpp/VSCode/SeaBattle/levelData.json");
 
 #include "ParserJson.h"
 
@@ -20,50 +21,41 @@ ParserJson::ParserJson() {
 }
 
 std::tuple<int, FieldData, std::vector<ShipData>> ParserJson::parseJson(const std::string& pathToJson) {
-    std::string path = std::move(pathToJson);
+    FieldData fieldData{};
+    int level{0};
+    std::vector<std::string> typeDecksShip = {"fourDecksShip", "threeDecksShip", "twoDecksShip", "oneDecksShip"};
+    std::vector<ShipData> shipsData;
 
-    //std::ifstream f("/Users/andrewborisov/Desktop/Dev/Projects/Cpp/VSCode/SeaBattle/levelData.json");
+    std::string path = std::move(pathToJson);
     std::ifstream f(path);
     if(f.is_open()) {
         Json::Value root;
         f >> root;
 
         Json::Value gamelevelObj = root["gamelevel"];
-        int level = gamelevelObj["level"].asInt();
+        level = gamelevelObj["level"].asInt();
         
         Json::Value fieldObj = gamelevelObj["field"];
         int rows = fieldObj["rows"].asInt();
         int columns = fieldObj["columns"].asInt();
         int rowWidth = fieldObj["rowWidth"].asInt();
         int rowHight = fieldObj["rowHight"].asInt();
-        FieldData fieldData = {rows, columns, static_cast<float>(rowWidth), static_cast<float>(rowHight)};
-
-        Json::Value decksShipObj = gamelevelObj["fourDecksShip"];
-        int decks = decksShipObj["decks"].asInt();
-        int beginRowCell = decksShipObj["beginRowCell"].asInt();
-        int beginColumnCell = decksShipObj["beginColumnCell"].asInt();
-        bool isHorizontal = decksShipObj["isHorizontal"].asBool();
-
-        ShipData shipData = {decks, beginColumnCell, beginColumnCell, isHorizontal};
+        fieldData = {rows, columns, static_cast<float>(rowWidth), static_cast<float>(rowHight)};
         
-        std::vector<std::string> typeDecksShip = {"fourDecksShip", "threeDecksShip", "twoDecksShip", "oneDecksShip"};
-
-        /*auto setShipData = [&gamelevelObj, &shipData]() {
-            Json::Value decksShipObj = gamelevelObj["fourDecksShip"];
+        auto setShipData = [&](const std::string& str) {
+            Json::Value decksShipObj = gamelevelObj[str];
             int decks = decksShipObj["decks"].asInt();
             int beginRowCell = decksShipObj["beginRowCell"].asInt();
             int beginColumnCell = decksShipObj["beginColumnCell"].asInt();
             bool isHorizontal = decksShipObj["isHorizontal"].asBool(); 
-
-            shipData = {decks, beginColumnCell, beginColumnCell, isHorizontal};
+          
+            ShipData shipData = {decks, beginColumnCell, beginColumnCell, isHorizontal};
+            shipsData.push_back(shipData);
         };
-        std::for_each (typeDecksShip.cbegin(), typeDecksShip.cend(), setShipData);*/
+        std::for_each (typeDecksShip.cbegin(), typeDecksShip.cend(), setShipData);
     }
-
-    FieldData fieldData;
-    int n = 0;
-    std::vector<ShipData> ships; 
-    return std::tuple<int, FieldData, std::vector<ShipData>>{n, fieldData, ships};
+ 
+    return {level, fieldData, shipsData};
 }
 
 std::tuple<int, FieldData, std::vector<ShipData>> ParserJson::parseTxt(const std::string& strData) {
