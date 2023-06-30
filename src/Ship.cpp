@@ -1,9 +1,12 @@
 #include "Ship.h"
+#include "UtilityData.h"
+
+#include <cassert>
 
 Ship::Ship()
     : m_type{Type::singleDeckShip},
-      m_isDestroyed{false},
       m_isHorizontal{true},
+      m_isDestroyed{false},
       m_health{0}, 
       m_isHit{false}
 {
@@ -11,8 +14,12 @@ Ship::Ship()
 }
 
 Ship::Ship(Type type, std::vector<std::shared_ptr<Cell>> position, bool isHorizontal) 
-    : m_type{type}, m_isHorizontal{isHorizontal},
-      m_health{0}, m_isHit{false}, m_position{position} {
+    : m_position{position},
+      m_type{type}, 
+      m_isHorizontal{isHorizontal},
+      m_isDestroyed{false},
+      m_health{0}, 
+      m_isHit{false} {
     setHealth();
 }
 

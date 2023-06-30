@@ -1,5 +1,7 @@
 #include "Model.h"
 
+#include <cassert>
+
 bool Model::init(const FieldData& fieldData, const std::vector<ShipData>& shipsData) {
     m_board1 = GameBoard::create(fieldData, shipsData, GameBoard::Owner::player1);
     m_board2 = GameBoard::create(fieldData, shipsData, GameBoard::Owner::player2);
@@ -24,7 +26,7 @@ void Model::updatedBoardData(const std::vector<std::shared_ptr<Cell>>& board,
     if(m_subject) {
         m_subject->notify(board, ships, rows, columns);
     } else {
-        
+        assert(false && "Subject nullptr");
     }
 }
 

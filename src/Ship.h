@@ -4,9 +4,13 @@
 
 #include <memory>
 #include <vector>
+
+class Position;
   
 class Ship {
 public:
+    using CellsList = std::vector<std::shared_ptr<Cell>>;
+
     enum class Type { 
         singleDeckShip = 1, 
         doubleDeckShip = 2, 
@@ -34,12 +38,12 @@ public:
     Cell::Type getTypeInCell(const std::shared_ptr<Cell> cell);
 
 private:
+   std::vector<std::shared_ptr<Cell>> m_position;
    Type m_type;
-   bool m_isDestroyed;
    bool m_isHorizontal;
+   bool m_isDestroyed;
    int m_health;
    int m_isHit;
-   std::vector<std::shared_ptr<Cell>> m_position;
 
    void destroy();
 };

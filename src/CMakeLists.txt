@@ -29,9 +29,12 @@ set_target_properties(jsoncpp_lib PROPERTIES IMPORTED_LOCATION "${JSONCPP_BINARY
 
 # Add the directory containing the jsoncpp headers to the include paths
 #include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../jsoncpp/include")
-set_target_properties(jsoncpp_lib PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/../jsoncpp/include"
-)
+
+#set_target_properties(jsoncpp_lib PROPERTIES
+#INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/../jsoncpp/include")
+
+# Add the directory containing the jsoncpp headers to the include paths
+target_include_directories(jsoncpp_lib INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/../jsoncpp/include")
 
 add_executable(SeaBattle main.cpp ${SOURCES})
 

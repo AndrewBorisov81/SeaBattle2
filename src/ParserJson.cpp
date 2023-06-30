@@ -49,7 +49,7 @@ std::tuple<int, FieldData, std::vector<ShipData>> ParserJson::parseJson(const st
             int beginColumnCell = decksShipObj["beginColumnCell"].asInt();
             bool isHorizontal = decksShipObj["isHorizontal"].asBool(); 
           
-            ShipData shipData = {decks, beginColumnCell, beginColumnCell, isHorizontal};
+            ShipData shipData = {decks, beginRowCell, beginColumnCell, isHorizontal};
             shipsData.push_back(shipData);
         };
         std::for_each (typeDecksShip.cbegin(), typeDecksShip.cend(), setShipData);

@@ -29,7 +29,7 @@ int main()
 {
    cout << "Hello Sea Battle!" << '\n';
 
-   std::string jsonPath {"/Users/andrewborisov/Desktop/Dev/Projects/Cpp/VSCode/SeaBattle/levelData.json"};
+   std::string jsonPath {"/home/andrii/Desktop/Dev/Cpp/VSCode/SeaBattle2/levelData.json"};
    ParserJson parserJson;
    std::tuple<int, FieldData, std::vector<ShipData>> levelParsedDataJ = parserJson.parseJson(jsonPath);
 
@@ -40,8 +40,8 @@ int main()
 
    enum class InitData{field = 1, ships};
     std::unique_ptr<Model> model = std::make_unique<Model>();
-    model->init(std::get<static_cast<int>(InitData::field)>(levelParsedData),  
-    std::get<static_cast<int>(InitData::ships)>(levelParsedData));
+    model->init(std::get<static_cast<int>(InitData::field)>(levelParsedDataJ),  
+    std::get<static_cast<int>(InitData::ships)>(levelParsedDataJ));
     model->setSubject(subject);
     std::shared_ptr<IView> view = std::make_shared<View>();
 

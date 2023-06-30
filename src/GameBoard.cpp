@@ -25,14 +25,14 @@ GameBoard::GameBoard(const FieldData& fieldData,
     // Test 
     //attack
     //ship destroyed
-    attack(0, 0);
-    attack(1, 0);
-    attack(2, 0);
-    attack(3, 0);
+    attack(1, 1);
+    attack(2, 1);
+    attack(3, 1);
+    attack(4, 1);
 
-    attack(1, 2);
-    attack(1, 3);
-    attack(1, 4);
+    attack(3, 3);
+    attack(3, 4);
+    attack(3, 5);
 
     attack(7, 1);
     attack(8, 1);
