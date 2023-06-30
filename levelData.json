@@ -5,6 +5,6 @@
     "fourDecksShip" : {"decks": 4, "beginRowCell": 1, "beginColumnCell" : 1, "isHorizontal": false},
     "threeDecksShip": {"decks" : 3, "beginRowCell": 3, "beginColumnCell" : 3, "isHorizontal" : true},
     "twoDecksShip" : {"decks" : 2, "beginRowCell" : 7, "beginColumnCell": 1, "isHorizontal" : false },
-    "oneDecksShip": {"decks": 1 , "beginRowCell": 12, "beginColumnCell" : 12, "isHorizontal" : false}
+    "oneDecksShip": {"decks": 1 , "beginRowCell": 11, "beginColumnCell" : 11, "isHorizontal" : false}
    }
 }
