@@ -37,7 +37,7 @@ GameBoard::GameBoard(const FieldData& fieldData,
     attack(7, 1);
     attack(8, 1);
     //missed
-    attack(0, 5);
+    attack(1, 5);
 }
 
 GameBoard::~GameBoard() {
@@ -127,7 +127,16 @@ void GameBoard::createShips() {
 
 const std::shared_ptr<Cell>& GameBoard::getBoardSpace(int row, int col, 
     const CellsList& board) {
-    int index = (board.size()/m_fieldData.columns) * row + col; 
+    int index{};
+    int bSize = board.size();
+    assert(bSize != 0 && "Board is Empty!");
+    if (m_fieldData.columns == 0){
+       index = col; 
+    }
+    else
+    {
+        index = (board.size()/m_fieldData.columns) * row + col;
+    } 
     return board.at(index);
 }
 
